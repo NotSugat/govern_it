@@ -2,6 +2,8 @@ import express from 'express';
 import { Server, Socket } from 'socket.io';
 
 const app = express();
+app.use(express.json());
+
 const io = new Server(3001,{
     cors:{
         origin: 'http://localhost:3000',
@@ -10,7 +12,7 @@ const io = new Server(3001,{
 });
 
 io.on("connection", (socket) => {
-  console.log("SOCKET CONNECTED")
+  console.log("SOCKET CONNECTED");
   socket.on('joinRoomCode',(roomCode)=>{
     socket.join(roomCode);
 
@@ -32,7 +34,7 @@ io.on("connection", (socket) => {
   });
 });
 
-io.listen(3000);
+io.listen(3005);
 
 app.listen(5000, () => {
   // console.log('Server listening on port 3001');

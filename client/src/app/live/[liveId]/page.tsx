@@ -1,8 +1,8 @@
 "use client";
 import React, {useState,useEffect, FormEvent} from 'react';
-import SingleMessage from '../components/SingleMessage';
+import SingleMessage from '../../components/SingleMessage';
 import './homepage.css';
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar';
 import {io,Socket} from 'socket.io-client';
 import { useParams } from 'next/navigation';
 import { useDispatch, useSelector } from "react-redux";
@@ -25,13 +25,13 @@ const Live = () => {
 
     const [allMessages, setAllMessages] = useState<Message[]>([]);    ;
     const [inputText, setInputText] = useState('');
-    const {userInfo} = useSelector((state)=>state.auth);
+    // const {userInfo} = useSelector((state)=>state.auth);
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');           
     const currentTime = `${hours}:${minutes}`
     const {id:stream_id} = useParams();
-    const userName = userInfo?.rows?.[0]?.name ?? "Anonymous User";
+    const userName = "Anonymous User";
     const socket: Socket = io("http://localhost:3001");
 
     socket.on("connect", () => {
@@ -84,10 +84,18 @@ const Live = () => {
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className="flex flex-col xl:flex-row">
         <div className="w-[65%] bg-blue-500 p-4">
-        <iframe className="w-[100%] h-[500px]" src="https://www.youtube.com/embed/K4DyBUG242c?si=2Vsh5MrU8RhIODat" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>        </div>
+          <iframe
+            className="h-[500px] w-[100%]"
+            src="https://www.youtube.com/embed/K4DyBUG242c?si=2Vsh5MrU8RhIODat"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>{" "}
+        </div>
         <div className="w-[35%] bg-green-500 p-4">
         <div className="chat-container">
                 <header className="chat-header">
