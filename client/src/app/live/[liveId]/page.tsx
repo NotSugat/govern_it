@@ -1,7 +1,6 @@
 "use client";
 import React, {useState,useEffect, FormEvent} from 'react';
 import SingleMessage from '../../components/SingleMessage';
-import './homepage.css';
 import Navbar from '../../components/Navbar';
 import {io,Socket} from 'socket.io-client';
 import { useParams } from 'next/navigation';
