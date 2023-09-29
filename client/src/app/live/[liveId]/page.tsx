@@ -50,6 +50,13 @@ const Live = () => {
     },[socket, stream_id])
 
     useEffect(()=>{
+        console.log(allMessages)
+        const chatMessages  = document.getElementById('chat-messages')
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    },[allMessages])
+
+    useEffect(()=>{
         if(socket == null) return ; 
         
         socket.on("message",(receivedMessage)=>{
