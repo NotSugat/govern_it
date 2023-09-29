@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { uuid } from "uuidv4";
 
 const LiveCards = () => {
   const posts = [
@@ -42,27 +43,29 @@ const LiveCards = () => {
   ];
 
   return (
-    <section className="mx-auto mt-12 max-w-screen-xl px-4 md:px-8">
+    <section className="mx-auto mt-12 max-w-[var(--screen-max)] px-4 md:px-8">
       <div>
-        <Link href={`live/${uuidv4()}`} className="max-w-screen-xl border px-2">
-          <div className="flex flex-row justify-between p-4 leading-normal">
+        <Link href={`live/${uuid()}`} className="max-w-screen-xl border px-2">
+          <div className="grid grid-cols-2   p-4 leading-normal">
             <img
               className="h-80 w-full rounded-t-md object-cover"
-              src="https://images.unsplash.com/photo-1620287341056-49a2f1ab2fdc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Image" />
+              src="https://images.unsplash.com/photo-1620287341056-49a2f1ab2fdc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+              alt="Image"
+            />
             <div className="flex flex-col justify-center p-4 leading-normal">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <p className="text-gray-600">Your locality</p>
+              <h5 className="truncate-overflow-2 mb-2 text-2xl font-bold  tracking-tight text-gray-900 dark:text-white">
                 Noteworthy technology acquisitions 2021
               </h5>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              <p className="truncate-overflow-3 mb-3 font-normal text-gray-700 dark:text-gray-400">
                 Here are the biggest enterprise technology acquisitions of 2021
                 so far, in reverse chronological order.
               </p>
             </div>
-          </div>        
-
+          </div>
         </Link>
       </div>
-      <div className="max-w-screen-xl border px-2"></div>
+      <div className=" border px-3"></div>
       <div className="text-center">
         <h1 className="text-3xl font-semibold text-gray-800">Live Streams</h1>
         <p className="mt-3 text-gray-500">
@@ -70,10 +73,10 @@ const LiveCards = () => {
         </p>
       </div>
       <div className="max-w-screen-xl border px-2"></div>
-      <div className="mt-12 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="my-2 mt-12 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
         {posts.map((items, key) => (
           <article
-            className="mx-auto mt-4 max-w-md rounded-md border shadow-lg duration-300 hover:shadow-sm"
+            className="mx-auto mt-4 max-w-md rounded-md border pb-4 shadow-lg duration-300 hover:shadow-sm"
             key={key}
           >
             <a href={items.href}>
@@ -83,7 +86,13 @@ const LiveCards = () => {
                 alt={items.title}
                 className="h-48 w-full rounded-t-md"
               />
-              <div className="ml-4 mr-2 mt-2 flex items-center pt-3">
+              <div className=" px-3">
+                <h3 className="truncate-overflow-2 h-[3.2rem] text-xl text-gray-900">
+                  {items.title}
+                </h3>
+              </div>
+
+              <div className="ml-4 mr-2 mt-2 flex items-center pt-3 ">
                 <div className="h-10 w-10 flex-none rounded-full">
                   <img
                     src={items.authorLogo}
@@ -99,10 +108,6 @@ const LiveCards = () => {
                     {items.date}
                   </span>
                 </div>
-              </div>
-              <div className="mb-3 ml-4 mr-2 pt-3">
-                <h3 className="text-xl text-gray-900">{items.title}</h3>
-                <p className="mt-1 text-sm text-gray-400">{items.desc}</p>
               </div>
             </a>
           </article>
