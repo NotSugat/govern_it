@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { useParams } from "next/navigation";
+
 const LiveCards = () => {
   const posts = [
     {
@@ -41,16 +44,11 @@ const LiveCards = () => {
   return (
     <section className="mx-auto mt-12 max-w-screen-xl px-4 md:px-8">
       <div>
-        <a href="#" className="max-w-screen-xl border px-2">
+        <Link href={`live/${uuidv4()}`} className="max-w-screen-xl border px-2">
           <div className="flex flex-row justify-between p-4 leading-normal">
-            <iframe
+            <img
               className="h-80 w-full rounded-t-md object-cover"
-              src="https://www.youtube.com/embed/K4DyBUG242c?si=2Vsh5MrU8RhIODat"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>{" "}
+              src="https://images.unsplash.com/photo-1620287341056-49a2f1ab2fdc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Image" />
             <div className="flex flex-col justify-center p-4 leading-normal">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Noteworthy technology acquisitions 2021
@@ -60,8 +58,9 @@ const LiveCards = () => {
                 so far, in reverse chronological order.
               </p>
             </div>
-          </div>
-        </a>
+          </div>        
+
+        </Link>
       </div>
       <div className="max-w-screen-xl border px-2"></div>
       <div className="text-center">

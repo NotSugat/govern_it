@@ -21,7 +21,8 @@ interface Message {
   
 
 const Live = () => {
-
+    const params = useParams();
+    // console.log();
     const [allMessages, setAllMessages] = useState<Message[]>([]);    ;
     const [inputText, setInputText] = useState('');
     // const {userInfo} = useSelector((state)=>state.auth);
@@ -29,7 +30,7 @@ const Live = () => {
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');           
     const currentTime = `${hours}:${minutes}`
-    const {id:stream_id} = useParams();
+    const stream_id = params.liveId;
     const userName = "Anonymous User";
     const socket: Socket = io("http://localhost:3001");
 
@@ -44,7 +45,7 @@ const Live = () => {
         if (socket == null) return; 
         socket.emit('joinRoomCode',stream_id)
         return ()=>{
-            socket.off('joinRoomCode');
+            socket.off('joinRoomCode'); 
         }
     },[socket, stream_id])
 
@@ -58,7 +59,9 @@ const Live = () => {
         socket.on("receiveChatMessage", (data)=>{
             let updatedData = {};
             updatedData = data;
-             setAllMessages((allMessages)=>[
+            // console.log(allMessages);
+            
+            setAllMessages(()=>[
                 ...allMessages, 
                 {inputText: data.inputText, userName: data.userName, currentTime: data.currentTime}
             ]
@@ -68,7 +71,7 @@ const Live = () => {
         return ()=>{
             socket.off('message')
         }
-    },[socket])
+    },[socket,allMessages])
 
     const submitForm = (e: FormEvent)=>{
         e.preventDefault();
