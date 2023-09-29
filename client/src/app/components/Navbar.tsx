@@ -43,14 +43,15 @@ const AvatarMenue = () => {
         {navigation.map((item, idx) => (
           <li key={idx}>
             <a
-              className="block text-gray-600 hover:text-gray-900  lg:hover:bg-gray-50"
+              className="block border-none px-2 py-1 text-xl text-gray-600 hover:text-gray-900
+               lg:hover:bg-gray-50"
               href={item.path}
             >
               {item.title}
             </a>
           </li>
         ))}
-        <button className="block w-full border-t py-3 text-justify text-gray-600 hover:text-gray-900 lg:p-3 lg:hover:bg-gray-50">
+        <button className="block w-full border-t py-1 text-justify text-xl text-gray-600 hover:text-gray-900 lg:p-3 lg:hover:bg-gray-50">
           Logout
         </button>
       </ul>
@@ -77,13 +78,13 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="w-full bg-red-400 text-base lg:text-sm">
+    <header className="w-full bg-blue-500 py-2  pt-1 text-base lg:text-sm">
       <div
         className={` mx-auto w-full items-center gap-x-14 bg-white px-16 lg:static lg:flex lg:px-8 ${
           state ? "fixed inset-x-0 h-full" : ""
         }`}
       >
-        <div className="flex items-center justify-between py-3 lg:block lg:py-5">
+        <div className="flex items-center justify-between py-3 lg:block lg:py-5  ">
           <a href="javascript:void(0)">
             <img
               src="https://www.floatui.com/logo.svg"
@@ -164,7 +165,7 @@ const Navbar = () => {
                 <li key={idx}>
                   <a
                     href={item.path}
-                    className="block text-gray-700 hover:text-gray-900"
+                    className="block text-xl text-gray-700 hover:text-red-700"
                   >
                     {item.title}
                   </a>
@@ -188,7 +189,7 @@ const Navbar = () => {
               >
                 <a
                   href={item.path}
-                  className="block rounded-lg px-3 py-2 text-gray-700 duration-150 hover:bg-gray-100 hover:text-gray-900"
+                  className="block rounded-lg px-3 py-2 text-xl text-gray-100 duration-150 hover:bg-gray-100 hover:text-gray-900"
                 >
                   {item.title}
                 </a>

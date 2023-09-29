@@ -40,13 +40,38 @@ const LiveCards = () => {
 
   return (
     <section className="mx-auto mt-12 max-w-screen-xl px-4 md:px-8">
+      <div>
+        <a href="#" className="max-w-screen-xl border px-2">
+          <div className="flex flex-row justify-between p-4 leading-normal">
+            <iframe
+              className="h-80 w-full rounded-t-md object-cover"
+              src="https://www.youtube.com/embed/K4DyBUG242c?si=2Vsh5MrU8RhIODat"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>{" "}
+            <div className="flex flex-col justify-center p-4 leading-normal">
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Noteworthy technology acquisitions 2021
+              </h5>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Here are the biggest enterprise technology acquisitions of 2021
+                so far, in reverse chronological order.
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div className="max-w-screen-xl border px-2"></div>
       <div className="text-center">
         <h1 className="text-3xl font-semibold text-gray-800">Live Streams</h1>
         <p className="mt-3 text-gray-500">
           News and Live Telecast. Updated every hour.
         </p>
       </div>
-      <div className="mt-12 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="max-w-screen-xl border px-2"></div>
+      <div className="mt-12 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
         {posts.map((items, key) => (
           <article
             className="mx-auto mt-4 max-w-md rounded-md border shadow-lg duration-300 hover:shadow-sm"
