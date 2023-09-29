@@ -1,3 +1,4 @@
+"use client";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 // Avtar with darpdown menu
@@ -42,7 +43,7 @@ const AvatarMenue = () => {
         {navigation.map((item, idx) => (
           <li key={idx}>
             <a
-              className="block text-gray-600 hover:text-gray-900 lg:p-3 lg:hover:bg-gray-50"
+              className="block text-gray-600 hover:text-gray-900  lg:hover:bg-gray-50"
               href={item.path}
             >
               {item.title}
@@ -78,7 +79,7 @@ const Navbar = () => {
   return (
     <header className="w-full bg-red-400 text-base lg:text-sm">
       <div
-        className={` mx-auto w-[90%] items-center gap-x-14 bg-white px-4 lg:static lg:flex lg:px-8 ${
+        className={` mx-auto w-full items-center gap-x-14 bg-white px-16 lg:static lg:flex lg:px-8 ${
           state ? "fixed inset-x-0 h-full" : ""
         }`}
       >
@@ -175,7 +176,7 @@ const Navbar = () => {
         </div>
       </div>
       <nav className="border-b">
-        <ul className="mx-auto flex max-w-screen-xl items-center gap-x-3 overflow-x-auto px-4 lg:px-8">
+        <ul className="mx-auto flex max-w-screen-xl items-center justify-center gap-x-3 overflow-x-auto px-4 lg:px-8">
           {submenuNav.map((item, idx) => {
             return (
               // Replace [idx == 0] with [window.location.pathname == item.path]
