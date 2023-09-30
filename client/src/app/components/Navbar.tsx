@@ -1,12 +1,16 @@
 "use client";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { store, useAppDispatch, useAppSelector } from "../../redux/store";
+import { toggleEdit } from "@/redux/features/toggleslice";
 
 // Avtar with darpdown menu
 const AvatarMenue = () => {
   const [state, setState] = useState(false);
   const profileRef: React.MutableRefObject<HTMLButtonElement | null> =
     useRef(null);
+  const dispatch = useAppDispatch();
+  const isEnglish = useAppSelector((state) => state.isEnglish);
 
   const navigation = [
     { title: "Dashboard", path: "javascript:void(0)" },
@@ -14,6 +18,10 @@ const AvatarMenue = () => {
     { title: "Profile", path: "javascript:void(0)" },
     { title: "Settings", path: "javascript:void(0)" },
   ];
+  const changeLanguage = (e) => {
+    const locale = e.target.value;
+    dispatch(toggleEdit(true));
+  };
 
   useEffect(() => {
     const handleDropDown = (e: ChangeEvent) => {
@@ -27,7 +35,7 @@ const AvatarMenue = () => {
       <div className="">
         <button
           ref={profileRef}
-          className="hidden h-10 w-10 rounded-full outline-none ring-gray-200 ring-offset-2 lg:block lg:focus:ring-2"
+          className="hidden h-10 w-10 gap-4 rounded-full outline-none ring-gray-200 ring-offset-2 lg:block  lg:focus:ring-2"
           onClick={() => setState(!state)}
         >
           <img
@@ -61,12 +69,15 @@ const AvatarMenue = () => {
 
 const Navbar = () => {
   const [state, setState] = useState(false);
+  const dispatch = useAppDispatch();
+  const isEnglish = useAppSelector((state) => state.isEnglish);
 
   // Replace javascript:void(0) paths with your paths
   const navigation = [
-    { title: "Home", path: "javascript:void(0)" },
-    { title: "Budget", path: "javascript:void(0)" },
-    { title: "About us", path: "javascript:void(0)" },
+    { title: "Home", path: "/home" },
+    { title: "Budget", path: "/budget" },
+    { title: "Live", path: "/live/kathmandunagarpalika" },
+    { title: "About us", path: "/home" },
   ];
 
   const submenuNav = [
@@ -77,6 +88,11 @@ const Navbar = () => {
     { title: "Plans", path: "javascript:void(0)" },
   ];
 
+  const changeLanguage = (e) => {
+    const locale = e.target.value;
+    dispatch(toggleEdit(true));
+  };
+
   return (
     <header className="w-full bg-blue-500 text-base shadow-sm lg:text-sm">
       <div
@@ -84,7 +100,7 @@ const Navbar = () => {
           }`}
       >
         <div className="flex items-center justify-between  lg:block   ">
-          <a href="javascript:void(0)" className="flex items-center gap-4">
+          <a href="/home" className="flex items-center gap-4">
             <Image
               src="/assets/nepalGov.png"
               width={1000}
@@ -160,6 +176,18 @@ const Navbar = () => {
                 />
               </div>
             </form>
+            <select
+              onChange={changeLanguage}
+              defaultValue={"hell"}
+              className="text-shadow-sm bg-transparent text-lg tracking-wide text-black"
+            >
+              <option className="text-black" value="en">
+                EN
+              </option>
+              <option className="text-black" value="ne">
+                NE
+              </option>
+            </select>
             {navigation.map((item, idx) => {
               return (
                 <li key={idx}>

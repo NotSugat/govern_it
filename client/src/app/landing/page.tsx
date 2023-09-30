@@ -10,14 +10,12 @@ import { useState, useEffect } from "react";
 import en from "../locales/en";
 
 import ne from "../locales/ne";
-// import ViewSource from '../components/github';
 import { store, useAppDispatch, useAppSelector } from "../../redux/store";
+
 const Landing = () => {
-  // const [showBanner, setBanner] = useState(true);
   const router = useRouter();
   const { locale } = router;
   const [t, setT] = useState({});
-  // const t = locale === "en" ? en : ne;
   const isEnglish = useAppSelector((state) => state.isEnglish);
   useEffect(() => {
     if (!isEnglish) {
