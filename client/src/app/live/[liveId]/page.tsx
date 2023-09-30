@@ -5,6 +5,9 @@ import Navbar from "../../components/Navbar";
 import { io, Socket } from "socket.io-client";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
+import { Divide, Sidebar } from "lucide-react";
+import SideNavBar from "@/app/components/SideNavbar";
+import SideNavbar from "@/app/components/SideNavbar";
 
 interface SingleMessageProp {
   name: string;
@@ -50,7 +53,7 @@ const Live = () => {
   useEffect(() => {
     console.log(allMessages);
     const chatMessages = document.getElementById("chat-messages");
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    // chatMessages.scrollTop = chatMessages.scrollHeight;
   }, [allMessages]);
 
   useEffect(() => {
@@ -91,60 +94,10 @@ const Live = () => {
   };
 
   return (
-    <>
+    <main className="">
       <Navbar />
-      <div className="flex flex-col xl:flex-row">
-        <div className="w-[65%] bg-blue-500 p-4">
-          <iframe
-            className="h-[500px] w-[100%]"
-            src="https://www.youtube.com/embed/K4DyBUG242c?si=2Vsh5MrU8RhIODat"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>{" "}
-        </div>
-        <div className="w-[35%] bg-green-500 p-4">
-          <div className="chat-container">
-            <header className="chat-header">
-              <h1>
-                <i className="fas fa-smile"></i> SXYNIX
-              </h1>
-            </header>
-            <main className="chat-main">
-              <div className="chat-messages" id="chat-messages">
-                {allMessages.map((msg: any, index) => (
-                  <SingleMessage
-                    key={index}
-                    userName={msg.userName}
-                    displayTime={msg.currentTime}
-                    message={msg.inputText}
-                  />
-                ))}
-              </div>
-            </main>
-            <div className="chat-form-container">
-              <form id="chat-form" onSubmit={submitForm}>
-                <input
-                  id="msg"
-                  value={inputText}
-                  type="text"
-                  placeholder="Enter Message"
-                  required
-                  autoComplete="off"
-                  onChange={(e) => {
-                    setInputText(e.target.value);
-                  }}
-                />
-                <button className="btn">
-                  <i className="fas fa-paper-plane"></i> Send
-                </button>
-              </form>
-            </div>
-          </div>{" "}
-        </div>
-      </div>
-    </>
+      <SideNavbar />
+    </main>
   );
 };
 

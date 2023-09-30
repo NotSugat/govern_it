@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 // Avtar with darpdown menu
@@ -36,9 +37,8 @@ const AvatarMenue = () => {
         </button>
       </div>
       <ul
-        className={`right-0 top-14 mt-6 space-y-6 bg-white lg:absolute lg:mt-0 lg:w-52 lg:space-y-0 lg:rounded-md lg:border lg:shadow-md ${
-          state ? "" : "lg:hidden"
-        }`}
+        className={`right-0 top-14 mt-6 space-y-6 bg-white lg:absolute lg:mt-0 lg:w-52 lg:space-y-0 lg:rounded-md lg:border lg:shadow-md ${state ? "" : "lg:hidden"
+          }`}
       >
         {navigation.map((item, idx) => (
           <li key={idx}>
@@ -64,9 +64,9 @@ const Navbar = () => {
 
   // Replace javascript:void(0) paths with your paths
   const navigation = [
-    { title: "Pro version", path: "javascript:void(0)" },
-    { title: "Upgrade", path: "javascript:void(0)" },
-    { title: "Support", path: "javascript:void(0)" },
+    { title: "Home", path: "javascript:void(0)" },
+    { title: "Budget", path: "javascript:void(0)" },
+    { title: "About us", path: "javascript:void(0)" },
   ];
 
   const submenuNav = [
@@ -80,17 +80,17 @@ const Navbar = () => {
   return (
     <header className="w-full bg-blue-500 text-base lg:text-sm">
       <div
-        className={` mx-auto w-full items-center gap-x-14 bg-white px-16 py-2 lg:static lg:flex lg:px-8 ${
-          state ? "fixed inset-x-0 h-full py-1" : ""
-        }`}
+        className={` mx-auto w-full items-center gap-x-14 bg-white px-16 py-2 lg:static lg:flex lg:px-8 ${state ? "fixed inset-x-0 h-full " : ""
+          }`}
       >
         <div className="flex items-center justify-between  lg:block   ">
           <a href="javascript:void(0)">
-            <img
-              src="https://www.floatui.com/logo.svg"
-              width={120}
-              height={50}
+            <Image
+              src="/assets/nepalGov.png"
+              width={1000}
+              height={1000}
               alt="Float UI logo"
+              className="h-12 w-12"
             />
           </a>
           <div className="lg:hidden">
@@ -129,9 +129,8 @@ const Navbar = () => {
           </div>
         </div>
         <div
-          className={`nav-menu mt-8 max-h-screen flex-1 overflow-y-auto pb-28 lg:mt-0 lg:block lg:overflow-visible lg:pb-0 ${
-            state ? "" : "hidden"
-          }`}
+          className={`nav-menu mt-8  max-h-screen flex-1 overflow-y-auto pb-28 lg:mt-0 lg:block lg:overflow-visible lg:pb-0 ${state ? "" : "hidden"
+            }`}
         >
           <ul className="items-center space-y-6 lg:flex lg:space-x-6 lg:space-y-0">
             <form
@@ -176,28 +175,6 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <nav className="border-b">
-        <ul className="mx-auto flex max-w-screen-xl items-center justify-center gap-x-3 overflow-x-auto px-4 lg:px-8">
-          {submenuNav.map((item, idx) => {
-            return (
-              // Replace [idx == 0] with [window.location.pathname == item.path]
-              <li
-                key={idx}
-                className={`py-1 ${
-                  idx == 0 ? "border-b-2 border-indigo-600" : ""
-                }`}
-              >
-                <a
-                  href={item.path}
-                  className="block rounded-lg px-3 py-2 text-lg text-gray-100 duration-150 hover:bg-gray-100 hover:text-gray-900"
-                >
-                  {item.title}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
     </header>
   );
 };
