@@ -1,38 +1,61 @@
+"use client";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import LandingNav from "../components/LandingNav";
 import HowToUse from "../components/HowToUse";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+import en from "../locales/en";
+
+import ne from "../locales/ne";
+// import ViewSource from '../components/github';
 
 const Landing = () => {
+  // const [showBanner, setBanner] = useState(true);
+  const router = useRouter();
+  const { locale } = router;
+  const t = locale === "en" ? en : ne;
   const features = [
     {
       avatar: "/assets/live-hero.png",
-      title: "Live Streaming",
+      title: `${t.t_title}`,
       desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
     },
     {
       avatar: "/assets/budget.png",
-      title: "Budget Transparency",
+      title: `${t.t_budget}`,
       desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
     },
     {
       avatar: "/assets/leaderboard.png",
-      title: "Gov Org Ranking",
+      title: `${t.t_govOrg}`,
       desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
     },
   ];
   return (
     <main className="bg-[#fefefe]">
+      {/* {showBanner && (
+        <div className="fixed bottom-0 flex w-full flex-col items-center bg-gray-800 bg-opacity-80 p-4 pt-4 text-center text-white">
+          <button
+            onClick={() => setBanner(false)}
+            className="mt-4 w-40 rounded border-2 border-white bg-gray-600 px-4 py-2 transition hover:bg-gray-800"
+          >
+            {t.button}
+          </button>
+        </div>
+      )} */}
       <LandingNav />
+
       {/* Hero section */}
       <section className="gradient h-[40vh]" id="#home">
         <div className="grid h-full grid-cols-2 place-items-center text-white ">
           <div>
             <h1 className="text-[clamp(1rem,5vw,2rem)] font-semibold">
-              GovernIT track everything everytime
+              {t.motto}
             </h1>
-            <p className="text-xl  text-gray-200">Digify Nepal with one app</p>
+            <p className="text-xl  text-gray-200">{t.theme}</p>
           </div>
           <Image
             src="/assets/hero.png"
@@ -47,7 +70,7 @@ const Landing = () => {
       <section id="whatweprovide">
         <div className="flex items-center justify-center">
           <p className="hr  mt-12 text-4xl font-medium text-primary">
-            What we provide
+            {t.provide}
           </p>
         </div>
 
@@ -93,9 +116,9 @@ const Landing = () => {
           />
           <div>
             <h1 className="text-[clamp(1rem,5vw,2rem)] font-semibold">
-              GovernIT track everything everytime
+              {t.motto}
             </h1>
-            <p className="text-xl  text-gray-200">Digify Nepal with one app</p>
+            <p className="text-xl  text-gray-200">{t.theme}</p>
           </div>
         </div>
       </section>
@@ -103,7 +126,7 @@ const Landing = () => {
       <section id="howtouse">
         <div className="flex items-center justify-center">
           <p className="hr  mt-12 text-4xl font-medium text-primary">
-            Getting Started
+            {t.getting_started}
           </p>
         </div>
 
@@ -121,30 +144,30 @@ const Landing = () => {
               className="h-10 w-10"
             />
             <h1 className="text-xl font-bold tracking-widest text-[var(--text-primary)]">
-              GovernIT
+              {t.logo_name}
             </h1>
           </div>
           <div className=" gap-12">
             <ul className="grid grid-cols-3 font-medium">
               <li className="text-primary-foreground">
-                <Link href="#home">Home</Link>
+                <Link href="#home">{t.home}</Link>
               </li>
 
               <li className="text-primary-foreground">
-                <Link href="#home">What we Provide</Link>
+                <Link href="#home">{t.provide}</Link>
               </li>
               <li className="text-primary-foreground">
-                <Link href="#home">How to Use</Link>
+                <Link href="#home">{t.use}</Link>
               </li>
               <li className="text-primary-foreground">
-                <Link href="#home">About Us</Link>
+                <Link href="#home">{t.about}</Link>
               </li>
               <li className="text-primary-foreground">
-                <Link href="#home">Contact Us</Link>
+                <Link href="#home">{t.contact}</Link>
               </li>
 
               <li className="text-primary-foreground">
-                <Link href="#home">privacy</Link>
+                <Link href="#home">{t.privacy_policy}</Link>
               </li>
             </ul>
           </div>
@@ -158,9 +181,7 @@ const Landing = () => {
         </div>
 
         <div className="mx-auto  flex max-w-[--screen-max] pt-6">
-          <p className="font-medium text-gray-100">
-            Copyright @ 2023 All Rights Reserved. Nepal Govermnet{" "}
-          </p>
+          <p className="font-medium text-gray-100">{t.copyright} </p>
         </div>
       </footer>
     </main>

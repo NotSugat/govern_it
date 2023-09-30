@@ -1,6 +1,13 @@
 import React from "react";
-
+import { useRouter } from "next/navigation";
+// import React from "react";
+import en from "../locales/en";
+import ne from "../locales/ne";
 const HowToUse = () => {
+  const router = useRouter();
+  const { locale } = router;
+  const t = locale === "en" ? en : ne;
+
   return (
     <div className=" mx-auto h-full max-w-[var(--screen-max)] ">
       <div className="wrap relative h-full overflow-hidden py-10">
@@ -12,11 +19,10 @@ const HowToUse = () => {
           </div>
           <div className="order-1 w-5/12 rounded-lg bg-[var(--bg-secondary)] px-6 py-4 shadow-xl">
             <h3 className="mb-3 text-2xl font-bold text-gray-800">
-              Sign Up using your Citizenship Number
+              {t.howtouse_1}
             </h3>
             <p className="text-lg leading-snug tracking-wide text-gray-900 text-opacity-100">
-              Once you have opened the GovernIT application, Sign Up and login
-              using citizenship number.
+              O{t.howtouse_1_desc}
             </p>
           </div>
         </div>
@@ -28,11 +34,10 @@ const HowToUse = () => {
           </div>
           <div className="bg- order-1 w-5/12 rounded-lg bg-[#02415e] px-6 py-4 shadow-xl">
             <h3 className="mb-3 text-2xl font-bold text-white">
-              Watch On the Go
+              {t.howtouse_1}
             </h3>
             <p className="text-lg font-medium leading-snug tracking-wide text-white text-opacity-100">
-              You can access all the information about your local government
-              streaming in GovernIT
+              {t.howtouse_2_desc}
             </p>
           </div>
         </div>
@@ -44,11 +49,10 @@ const HowToUse = () => {
           </div>
           <div className="order-1 w-5/12 rounded-lg bg-[var(--bg-secondary)] px-6 py-4 shadow-xl">
             <h3 className="mb-3 text-2xl font-bold text-gray-800">
-              Check out budget information of your locality
+              {t.howtouse_3}
             </h3>
             <p className="text-lg leading-snug tracking-wide text-gray-900 text-opacity-100">
-              You will prompt to live streaming site and click on nagarpalika
-              channel to view all thier budget and other information.
+              {t.howtouse_3_desc}
             </p>
           </div>
         </div>
@@ -60,10 +64,10 @@ const HowToUse = () => {
           </div>
           <div className="order-1 w-5/12 rounded-lg bg-[#02415e] px-6 py-4 shadow-xl">
             <h3 className="mb-3 text-2xl font-bold text-white">
-              Municipality Ranking
+              {t.howtouse_4}
             </h3>
             <p className="text-lg font-medium leading-snug tracking-wide text-white text-opacity-100 ">
-              {`You have the opportunity to access a ranking or assessment of your municipality's current status in relation to ongoing developmental projects required for the local area's improvement and development.`}
+              {t.howtouse_4_desc}
             </p>
           </div>
         </div>

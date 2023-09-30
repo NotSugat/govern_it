@@ -1,11 +1,10 @@
 "use client";
-import React, {useState,useEffect, FormEvent} from 'react';
-import SingleMessage from '../../components/SingleMessage';
-import Navbar from '../../components/Navbar';
-import {io,Socket} from 'socket.io-client';
-import { useParams } from 'next/navigation';
+import React, { useState, useEffect, FormEvent } from "react";
+import SingleMessage from "../../components/SingleMessage";
+import Navbar from "../../components/Navbar";
+import { io, Socket } from "socket.io-client";
+import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-
 
 interface SingleMessageProp {
   name: string;
@@ -14,82 +13,82 @@ interface SingleMessageProp {
 }
 
 interface Message {
-    inputText: string;
-    userName: string;
-    currentTime: string;
-  }
-  
+  inputText: string;
+  userName: string;
+  currentTime: string;
+}
 
 const Live = () => {
-    const params = useParams();
-    // console.log();
-    const [allMessages, setAllMessages] = useState<Message[]>([]);    ;
-    const [inputText, setInputText] = useState('');
-    // const {userInfo} = useSelector((state)=>state.auth);
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');           
-    const currentTime = `${hours}:${minutes}`
-    const stream_id = params.liveId;
-    const userName = "Anonymous User";
-    const socket: Socket = io("http://localhost:3001");
+  const params = useParams();
+  // console.log();
+  const [allMessages, setAllMessages] = useState<Message[]>([]);
+  const [inputText, setInputText] = useState("");
+  // const {userInfo} = useSelector((state)=>state.auth);
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const currentTime = `${hours}:${minutes}`;
+  const stream_id = params.liveId;
+  const userName = "Anonymous User";
+  const socket: Socket = io("http://localhost:3001");
 
-    socket.on("connect", () => {
-        console.log("Connected to Socket.IO server");
-      });
-      
-    socket.on("message", (data: string) => {
-        console.log("Received message from server:", data);
+  socket.on("connect", () => {
+    console.log("Connected to Socket.IO server");
+  });
+
+  socket.on("message", (data: string) => {
+    console.log("Received message from server:", data);
+  });
+  useEffect(() => {
+    if (socket == null) return;
+    socket.emit("joinRoomCode", stream_id);
+    return () => {
+      socket.off("joinRoomCode");
+    };
+  }, [socket, stream_id]);
+
+  useEffect(() => {
+    console.log(allMessages);
+    const chatMessages = document.getElementById("chat-messages");
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }, [allMessages]);
+
+  useEffect(() => {
+    if (socket == null) return;
+
+    socket.on("message", (receivedMessage) => {
+      console.log(receivedMessage);
     });
-    useEffect(()=>{
-        if (socket == null) return; 
-        socket.emit('joinRoomCode',stream_id)
-        return ()=>{
-            socket.off('joinRoomCode'); 
-        }
-    },[socket, stream_id])
 
-    useEffect(()=>{
-        console.log(allMessages)
-        const chatMessages  = document.getElementById('chat-messages')
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+    socket.on("receiveChatMessage", (data) => {
+      let updatedData = {};
+      updatedData = data;
+      // console.log(allMessages);
 
-    },[allMessages])
+      setAllMessages(() => [
+        ...allMessages,
+        {
+          inputText: data.inputText,
+          userName: data.userName,
+          currentTime: data.currentTime,
+        },
+      ]);
+    });
 
-    useEffect(()=>{
-        if(socket == null) return ; 
-        
-        socket.on("message",(receivedMessage)=>{
-            console.log(receivedMessage)
-        });
-        
-        socket.on("receiveChatMessage", (data)=>{
-            let updatedData = {};
-            updatedData = data;
-            // console.log(allMessages);
-            
-            setAllMessages(()=>[
-                ...allMessages, 
-                {inputText: data.inputText, userName: data.userName, currentTime: data.currentTime}
-            ]
-            );
-        });
-        
-        return ()=>{
-            socket.off('message')
-        }
-    },[socket,allMessages])
+    return () => {
+      socket.off("message");
+    };
+  }, [socket, allMessages]);
 
-    const submitForm = (e: FormEvent)=>{
-        e.preventDefault();
-        if(socket == null) return ;
+  const submitForm = (e: FormEvent) => {
+    e.preventDefault();
+    if (socket == null) return;
 
-        const currentTime = `${hours}:${minutes}`
+    const currentTime = `${hours}:${minutes}`;
 
-        socket.emit('chatMessage',{inputText, userName, currentTime})
-        setInputText('')
-    } 
-      
+    socket.emit("chatMessage", { inputText, userName, currentTime });
+    setInputText("");
+  };
 
   return (
     <>
@@ -106,37 +105,45 @@ const Live = () => {
           ></iframe>{" "}
         </div>
         <div className="w-[35%] bg-green-500 p-4">
-        <div className="chat-container">
-                <header className="chat-header">
-                    <h1><i className="fas fa-smile"></i> SXYNIX</h1>
-                </header>
-                <main className="chat-main">
-                    <div className="chat-messages" id='chat-messages'>
-                        {
-                            allMessages.map((msg : any,index)=>(
-                                <SingleMessage key={index}  userName={msg.userName} displayTime={msg.currentTime} message={msg.inputText}/>
-                            ))
-                        }
-                    </div>
-                </main>
-                <div className="chat-form-container">
-                    <form id="chat-form" onSubmit={submitForm}>
-                        <input
-                            id="msg"
-                            value={inputText}
-                            type="text"
-                            placeholder="Enter Message"
-                            required
-                            autoComplete="off"
-                            onChange={(e)=>{
-                                setInputText(e.target.value)
-                            }}
-                        />
-                        <button className="btn"><i className="fas fa-paper-plane"></i> Send</button>
-                    </form>
-                </div>
-            </div>        </div>
-    </div>
+          <div className="chat-container">
+            <header className="chat-header">
+              <h1>
+                <i className="fas fa-smile"></i> SXYNIX
+              </h1>
+            </header>
+            <main className="chat-main">
+              <div className="chat-messages" id="chat-messages">
+                {allMessages.map((msg: any, index) => (
+                  <SingleMessage
+                    key={index}
+                    userName={msg.userName}
+                    displayTime={msg.currentTime}
+                    message={msg.inputText}
+                  />
+                ))}
+              </div>
+            </main>
+            <div className="chat-form-container">
+              <form id="chat-form" onSubmit={submitForm}>
+                <input
+                  id="msg"
+                  value={inputText}
+                  type="text"
+                  placeholder="Enter Message"
+                  required
+                  autoComplete="off"
+                  onChange={(e) => {
+                    setInputText(e.target.value);
+                  }}
+                />
+                <button className="btn">
+                  <i className="fas fa-paper-plane"></i> Send
+                </button>
+              </form>
+            </div>
+          </div>{" "}
+        </div>
+      </div>
     </>
   );
 };
