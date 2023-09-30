@@ -32,7 +32,7 @@ const LandingNav = () => {
   };
 
   return (
-    <header className="body-font sticky top-0 bg-primary-foreground text-gray-600 ">
+    <header className="body-font sticky top-0 z-10 bg-primary-foreground text-gray-600 ">
       <div className="mx-auto flex max-w-[var(--screen-max)] flex-col flex-wrap items-center p-5 md:flex-row">
         <a className="title-font mb-4 flex items-center font-medium text-gray-900 md:mb-0">
           <Image
