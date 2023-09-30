@@ -1,15 +1,18 @@
 import express from 'express';
 import { Server, Socket } from 'socket.io';
+import userRoutes from './routes/userRoutes.js'
 
 const app = express();
 app.use(express.json());
 
 const io = new Server(3001,{
-    cors:{
-        origin: 'http://localhost:3000',
-        methods: ["GET", "POST"],
-    }
+  cors:{
+    origin: 'http://localhost:3000',
+    methods: ["GET", "POST"],
+  }
 });
+
+app.use('/api/users',userRoutes);
 
 io.on("connection", (socket) => {
   console.log("SOCKET CONNECTED");

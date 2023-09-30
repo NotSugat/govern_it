@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
+import localReducer from './localize'
 
 export const store = configureStore({
-	reducer: {},
+	reducer: {
+		localReducer
+	},
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
