@@ -134,19 +134,19 @@ const Live = () => {
             </div>
           </div>
 
-          <section className="h-full w-full p-4 shadow-md scrollbar-hide ">
+          <section className="scrollbar-hide h-full w-full p-4 shadow-md ">
             <p className="text-center text-2xl font-medium">Live Chat</p>
             <div className="chat-form-container h-[90%]">
               <div className="chat-messages" id="chat-messages">
-                  {allMessages.map((msg: any, index) => (
-                    <SingleMessage
-                      key={index}
-                      userName={msg.userName}
-                      displayTime={msg.currentTime}
-                      message={msg.inputText}
-                    />
-                  ))}
-                </div>
+                {allMessages.map((msg: any, index) => (
+                  <SingleMessage
+                    key={index}
+                    userName={msg.userName}
+                    displayTime={msg.currentTime}
+                    message={msg.inputText}
+                  />
+                ))}
+              </div>
             </div>
             <form onSubmit={submitForm}>
               <div className="flex">
@@ -155,18 +155,22 @@ const Live = () => {
                     type="text"
                     value={inputText}
                     id="msg"
-                    className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search" required
+                    className="z-20 block w-full rounded-r-lg border border-l-2 border-gray-300 border-l-gray-100 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500"
+                    placeholder="Search"
+                    required
                     onChange={(e) => {
                       setInputText(e.target.value);
                     }}
                   />
-                  <button type="submit" className="absolute top-0 right-0 p-2.5 h-full text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                  <Icon icon="uil:message" className="text-xl" />
-                  </svg></button>
+                  <button
+                    type="submit"
+                    className="absolute right-0 top-0 h-full rounded-r-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    <Icon icon="uil:message" className="text-xl" />
+                  </button>
                 </div>
               </div>
             </form>
-
           </section>
         </div>
       </div>

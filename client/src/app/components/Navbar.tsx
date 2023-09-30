@@ -84,7 +84,7 @@ const Navbar = () => {
           }`}
       >
         <div className="flex items-center justify-between  lg:block   ">
-          <a href="javascript:void(0)">
+          <a href="javascript:void(0)" className="flex items-center gap-4">
             <Image
               src="/assets/nepalGov.png"
               width={1000}
@@ -92,6 +92,7 @@ const Navbar = () => {
               alt="Float UI logo"
               className="h-12 w-12"
             />
+            <p className="text-2xl font-semibold tracking-wider">GovernIT</p>
           </a>
           <div className="lg:hidden">
             <button
