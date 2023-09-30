@@ -1,12 +1,24 @@
 import React from "react";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { store, useAppDispatch, useAppSelector } from "../../redux/store";
 // import React from "react";
 import en from "../locales/en";
 import ne from "../locales/ne";
+
 const HowToUse = () => {
   const router = useRouter();
   const { locale } = router;
-  const t = locale === "en" ? en : ne;
+  const [t, setT] = useState({});
+  // const t = locale === "en" ? en : ne;
+  const isEnglish = useAppSelector((state) => state.isEnglish);
+  useEffect(() => {
+    if (!isEnglish) {
+      setT(ne);
+    } else {
+      setT(en);
+    }
+  }, [isEnglish]);
 
   return (
     <div className=" mx-auto h-full max-w-[var(--screen-max)] ">

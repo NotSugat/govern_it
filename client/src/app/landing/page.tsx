@@ -5,18 +5,27 @@ import LandingNav from "../components/LandingNav";
 import HowToUse from "../components/HowToUse";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import en from "../locales/en";
 
 import ne from "../locales/ne";
 // import ViewSource from '../components/github';
-
+import { store, useAppDispatch, useAppSelector } from "../../redux/store";
 const Landing = () => {
   // const [showBanner, setBanner] = useState(true);
   const router = useRouter();
   const { locale } = router;
-  const t = locale === "en" ? en : ne;
+  const [t, setT] = useState({});
+  // const t = locale === "en" ? en : ne;
+  const isEnglish = useAppSelector((state) => state.isEnglish);
+  useEffect(() => {
+    if (!isEnglish) {
+      setT(ne);
+    } else {
+      setT(en);
+    }
+  }, [isEnglish]);
   const features = [
     {
       avatar: "/assets/live-hero.png",
