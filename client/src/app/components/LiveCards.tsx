@@ -44,7 +44,7 @@ const LiveCards = () => {
   ];
 
   return (
-    <section className="mx-auto mt-12 ">
+    <section className="mx-auto ">
       <div className="gradient text-primary-foreground">
         <Link
           href={`live/${uuid()}`}
