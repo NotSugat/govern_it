@@ -8,6 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Divide, Sidebar } from "lucide-react";
 import SideNavBar from "@/app/components/SideNavbar";
 import SideNavbar from "@/app/components/SideNavbar";
+import VideoPlayer from "@/app/components/VideoPlayer";
+import Image from "next/image";
+import { Icon } from "@iconify/react";
+import ChatDialog from "@/app/components/ChatDialog";
 
 interface SingleMessageProp {
   name: string;
@@ -94,9 +98,55 @@ const Live = () => {
   };
 
   return (
-    <main className="">
+    <main className="h-[100dvh] overflow-y-hidden">
       <Navbar />
-      <SideNavbar />
+      <div className="flex  overflow-y-hidden ">
+        <SideNavbar />
+        <div className="flex w-full ">
+          <div className="w-[1260px]">
+            <VideoPlayer />
+            <div className="flex items-center justify-between  p-4 ">
+              <section className="flex gap-4">
+                <Image
+                  alt="/assets/thimi.jpeg"
+                  src="/assets/thimi.jpeg"
+                  height={1000}
+                  width={1000}
+                  className="h-16 w-16 rounded-full"
+                />
+                <div>
+                  <p className="text-xl font-semibold">
+                    Budget Discussion for kartik month for developmental project
+                  </p>
+                  <p className="text-lg font-medium">
+                    Madhyapur Thimi Nagarapalika
+                  </p>
+                  <p className=" font-medium">🔴 Live</p>
+                </div>
+              </section>
+
+              <section>
+                <button className="flex items-center gap-2 rounded-md bg-secondary p-2">
+                  <Icon icon="mdi:heart-outline" />
+                  Follow
+                </button>
+              </section>
+            </div>
+          </div>
+
+          <section className="h-full w-full p-4 shadow-md ">
+            <div>
+              <p className="text-center text-2xl font-medium">Live Chat</p>
+              <ChatDialog />
+              <ChatDialog />
+              <ChatDialog />
+            </div>
+
+            {/* form hala */}
+          </section>
+        </div>
+        {/* new */}
+      </div>
     </main>
   );
 };

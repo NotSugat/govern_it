@@ -19,9 +19,8 @@ const VideoPlayer = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Live Stream</h2>
-      <video ref={videoRef} width="800" controls></video>
+    <div className="w-[1360px]">
+      <video ref={videoRef} width="1260" controls></video>
     </div>
   );
 };

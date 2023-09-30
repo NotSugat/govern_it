@@ -78,7 +78,7 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="w-full bg-blue-500 text-base lg:text-sm">
+    <header className="w-full bg-blue-500 text-base shadow-sm lg:text-sm">
       <div
         className={` mx-auto w-full items-center gap-x-14 bg-white px-16 py-2 lg:static lg:flex lg:px-8 ${state ? "fixed inset-x-0 h-full " : ""
           }`}
