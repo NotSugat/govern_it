@@ -5,12 +5,21 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import en from "../locales/en";
 import ne from "../locales/ne";
-import { isMainThread } from "worker_threads";
+import axios from "axios"
+import { toggleEdit } from "@/redux/features/toggleslice"
+import {store, useAppDispatch, useAppSelector} from '../../redux/store'
+
+
 const LandingNav = () => {
   const router = useRouter();
   // const routers = useRouter();
   const [isNepali, setIsNepali] = useState(true);
   const [t, setT] = useState({});
+  const dispatch = useAppDispatch();
+  const isEnglish = useAppSelector(
+    (state) => state.isEnglish
+  )
+  
   // const t = locale === "en" ? en : ne;
   useEffect(() => {
     if (isNepali) {
@@ -20,10 +29,22 @@ const LandingNav = () => {
     }
   }, [isNepali]);
 
+  useEffect(() => {
+if(isEnglish) {
+  console.log("hello ")
+} else {
+  console.log("hell ")
+}
+  },[isEnglish])
+  
   const changeLanguage = (e) => {
-    // const locale = e.target.value;
-    // router.push(router.pathname, router.asPath, { locale });
+    const locale = e.target.value;
+    dispatch(toggleEdit(true))
   };
+
+  useEffect(()=>{
+    console.log(isEnglish)
+  },[isEnglish]);
 
   return (
     <header className="body-font sticky top-0 bg-primary-foreground text-gray-600 ">
@@ -35,7 +56,7 @@ const LandingNav = () => {
             height={1000}
             width={1000}
             className="h-10 w-10"
-            onClick={() => setIsNepali(!isNepali)}
+            onClick={()=> dispatch(toggleEdit())}
           />
           <span className="ml-3 text-xl">{t.logo_name}</span>
         </a>

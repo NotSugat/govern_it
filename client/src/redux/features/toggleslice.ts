@@ -1,22 +1,25 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface EditState {
-	isEdited: boolean;
+	isEnglish: boolean;
 }
 
 const editState: EditState = {
-	isEdited: false,
+	isEnglish: true,
 };
 
-export const edit = createSlice({
+export const editSlice = createSlice({
 	name: "edit",
 	initialState: editState,  // This is where you provide the initial state
 	reducers: {
-		toggleEdit: (state) => {
-			state.isEdited = !state.isEdited;
+		toggleEdit: (state, actions) => {
+			state.isEnglish = !state.isEnglish;
 		}
 	},
 });
 
-export const { toggleEdit } = edit.actions;
-export default edit.reducer;
+// Action creators are generated for each case reducer function
+export const { toggleEdit } = editSlice.actions;
+
+export const editReducer = editSlice.reducer;
