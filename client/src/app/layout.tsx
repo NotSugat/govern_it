@@ -13,10 +13,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ReduxProvider>
     <html lang="en">
-      <body className="">{children}</body>
+      <body>
+        <ReduxProvider>
+            {children}
+        </ReduxProvider>
+      </body>
     </html>
-    </ReduxProvider>
   );
 }
