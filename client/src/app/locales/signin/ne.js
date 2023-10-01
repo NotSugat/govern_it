@@ -4,6 +4,6 @@ export default {
   signup: "साइन अप",
   signin: "साइन इन",
   forgetpassword: "पासवर्ड भुल्नु भयो",
-  email: "इमेल",
+  ctzn: "नागरिकता नम्बर",
   password: "पासवर्ड",
 };

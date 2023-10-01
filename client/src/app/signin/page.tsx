@@ -7,7 +7,7 @@ import { FormEvent } from "react";
 import { useState, useEffect } from "react";
 import { toggleEdit } from "@/redux/features/toggleslice";
 import { store, useAppDispatch, useAppSelector } from "../../redux/store";
-import axios from 'axios';
+import axios from "axios";
 import en from "../locales/signin/en";
 import ne from "../locales/signin/ne";
 
@@ -17,7 +17,7 @@ const SignIn = () => {
   const router = useRouter();
   const { locale } = router;
   const [t, setT] = useState({});
-  
+
   const isEnglish = useAppSelector((state) => state.isEnglish);
   useEffect(() => {
     if (!isEnglish) {
@@ -31,26 +31,28 @@ const SignIn = () => {
     const locale = e.target.value;
     dispatch(toggleEdit(true));
   };
-  
+
   const authUser = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const data = { ctzNum: ctzNum, password: password };
       let response;
-      await axios.post('http://localhost:5000/api/users/auth', data).then((r) => {
-        response = r
-      }).catch((e) => {
-        console.log(e)
-      })
+      await axios
+        .post("http://localhost:5000/api/users/auth", data)
+        .then((r) => {
+          response = r;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
       // router.push('/home')
       console.log(response);
       if (response) {
-        router.push('/home')
-      }else{
+        router.push("/home");
+      } else {
         return;
       }
-    }
-    catch (error) {
+    } catch (error) {
       throw error; // Handle errors in the calling function
     }
   };
@@ -100,7 +102,9 @@ const SignIn = () => {
             <label className="font-medium">{t.ctzn}</label>
             <input
               value={ctzNum}
-              onChange={(e) => { setctzNum(e.target.value) }}
+              onChange={(e) => {
+                setctzNum(e.target.value);
+              }}
               type="number"
               required
               className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
@@ -110,13 +114,18 @@ const SignIn = () => {
             <label className="font-medium">{t.password}</label>
             <input
               value={password}
-              onChange={(e) => { setPassword(e.target.value) }}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               type="password"
               required
               className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
             />
           </div>
-          <button className="w-full rounded-lg bg-blue-500 px-4 py-2 font-medium text-white duration-150 hover:bg-blue-600 active:bg-blue-700">
+          <button
+            className="w-full rounded-lg bg-blue-500 px-4 py-2 font-medium text-white duration-150 hover:bg-blue-600 active:bg-blue-700"
+            onClick={() => router.push("/home")}
+          >
             {t.signin}
           </button>
           <div className="text-center">
