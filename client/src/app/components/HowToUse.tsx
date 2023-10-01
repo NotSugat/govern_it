@@ -46,7 +46,7 @@ const HowToUse = () => {
           </div>
           <div className="bg- order-1 w-5/12 rounded-lg bg-[#02415e] px-6 py-4 shadow-xl">
             <h3 className="mb-3 text-2xl font-bold text-white">
-              {t.howtouse_1}
+              {t.howtouse_2}
             </h3>
             <p className="text-lg font-medium leading-snug tracking-wide text-white text-opacity-100">
               {t.howtouse_2_desc}
