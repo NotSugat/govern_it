@@ -2,28 +2,30 @@ import { database } from "../firebase.js";
 import { getDatabase, ref, set, child, get } from "firebase/database";
 import expressAsyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
-import { uuid } from "uuidv4";
+import generateToken from "../utils/generateToken.js";
 
 
 const registerUser = expressAsyncHandler(async (req, res, next) => {
-    const { email, name, password } = req.body;
+    const {ctzNum, email, name, password } = req.body;
 
     try {
         const dbRef = ref(getDatabase());
-        const snapshot = await get(child(dbRef, `users/${name}`));
+        const snapshot = await get(child(dbRef, `users/${ctzNum}`));
     
         if (snapshot.exists()) {
-            console.log("User with the same name already exists");
-            res.status(400).json({ error: 'User with the same name already exists' });
+            console.log("User with the same citizenship id already exists");
+            res.status(400).json({ error: 'User with the same citizenship id already exists' });
         } else {
             const salt = await bcrypt.genSalt(5);
             const hashedPassword = await bcrypt.hash(password, salt);
     
-            await set(child(dbRef, `users/${name}`), {
+            await set(child(dbRef, `users/${ctzNum}`), {
+                citizenship: ctzNum,
                 email: email,
-                password: hashedPassword // Store the hashed password, not the plain password
+                name: name,
+                password: hashedPassword
             });
-    
+            // generateToken(res, ctzNum);
             res.status(200).json("User inserted successfully");
         }
     } catch (error) {
@@ -36,9 +38,9 @@ const registerUser = expressAsyncHandler(async (req, res, next) => {
 
 //public route
 const authUser = expressAsyncHandler(async (req, res) => {
-    const { name, password } = req.body;
+    const {ctzNum, name, password } = req.body;
     try {
-        const userRef = ref(database, 'users/' + name);
+        const userRef = ref(database, 'users/' + ctzNum);
         const snapshot = await get(userRef);
     
         if (snapshot.exists()) {

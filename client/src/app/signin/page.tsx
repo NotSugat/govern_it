@@ -7,21 +7,17 @@ import { FormEvent } from "react";
 import { useState, useEffect } from "react";
 import { toggleEdit } from "@/redux/features/toggleslice";
 import { store, useAppDispatch, useAppSelector } from "../../redux/store";
-
+import axios from 'axios';
 import en from "../locales/signin/en";
 import ne from "../locales/signin/ne";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
+  const [ctzNum, setctzNum] = useState("");
   const [password, setPassword] = useState("");
-  const handleOnSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    return router.push("live");
-  };
   const router = useRouter();
   const { locale } = router;
   const [t, setT] = useState({});
-
+  
   const isEnglish = useAppSelector((state) => state.isEnglish);
   useEffect(() => {
     if (!isEnglish) {
@@ -34,6 +30,29 @@ const SignIn = () => {
   const changeLanguage = (e: any) => {
     const locale = e.target.value;
     dispatch(toggleEdit(true));
+  };
+  
+  const authUser = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      const data = { ctzNum: ctzNum, password: password };
+      let response;
+      await axios.post('http://localhost:5000/api/users/auth', data).then((r) => {
+        response = r
+      }).catch((e) => {
+        console.log(e)
+      })
+      // router.push('/home')
+      console.log(response);
+      if (response) {
+        router.push('/home')
+      }else{
+        return;
+      }
+    }
+    catch (error) {
+      throw error; // Handle errors in the calling function
+    }
   };
 
   return (
@@ -76,11 +95,13 @@ const SignIn = () => {
             </p>
           </div>
         </div>
-        <form onSubmit={handleOnSubmit} className="mt-8 space-y-5">
+        <form onSubmit={authUser} className="mt-8 space-y-5">
           <div>
-            <label className="font-medium">{t.email}</label>
+            <label className="font-medium">{t.ctzn}</label>
             <input
-              type="email"
+              value={ctzNum}
+              onChange={(e) => { setctzNum(e.target.value) }}
+              type="number"
               required
               className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
             />
@@ -88,6 +109,8 @@ const SignIn = () => {
           <div>
             <label className="font-medium">{t.password}</label>
             <input
+              value={password}
+              onChange={(e) => { setPassword(e.target.value) }}
               type="password"
               required
               className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"

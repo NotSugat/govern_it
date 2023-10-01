@@ -4,6 +4,6 @@ export default {
   signup: "Sign up",
   signin: "Sign in",
   forgetpassword: "Forget password?",
-  email: "Email",
+  ctzn: "Citizenship Number",
   password: "Password",
 };
