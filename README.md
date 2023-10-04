@@ -63,3 +63,9 @@ We would like to express our gratitude to the following mentors for their valuab
 - Mr. Aashish Thapa
 - Mr. Abhiyan Dhakal
 - Mr. Diwas Parajuli
+
+## Team Members
+<a  href="https://github.com/pranishkafle6175">Pranish Kafle</a><br> 
+<a  href="https://github.com/kausik10">Kausik Paudel</a><br>
+<a  href="https://github.com/anishh747">Anish Timalsina</a><br> 
+<a  href="https://github.com/notsugat">Sugat Sujakhu</a><br>
