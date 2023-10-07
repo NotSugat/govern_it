@@ -1,4 +1,4 @@
-export default data = {
+const data = {
   alt: "सरकारी लोगो",
   logo_name: "गभर्न इट",
   home: "घर",
@@ -27,3 +27,5 @@ export default data = {
   privacy_policy: "गोपनीयता",
   copyright: "प्रतिलिपि अधिकार @ 2023 सबै अधिकार सुरक्षित। नेपाल सरकार",
 };
+
+export default data;

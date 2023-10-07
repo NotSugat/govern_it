@@ -24,8 +24,8 @@ const AvatarMenue = () => {
   };
 
   useEffect(() => {
-    const handleDropDown = (e: ChangeEvent) => {
-      if (!profileRef?.current?.contains(e.target)) setState(false);
+    const handleDropDown = (e: MouseEvent) => {
+      if (!profileRef?.current?.contains(e.target as Node)) setState(false);
     };
     document.addEventListener("click", handleDropDown);
   }, []);

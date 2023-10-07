@@ -5,15 +5,12 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import en from "../locales/en";
 import ne from "../locales/ne";
-import axios from "axios";
 import { toggleEdit } from "@/redux/features/toggleslice";
 import { store, useAppDispatch, useAppSelector } from "../../redux/store";
 
 const LandingNav = () => {
   const router = useRouter();
-  // const routers = useRouter();
-  const [isNepali, setIsNepali] = useState(true);
-  const [t, setT] = useState({});
+  const [t, setT] = useState<any>({});
   const dispatch = useAppDispatch();
   const isEnglish = useAppSelector((state) => state.isEnglish);
 
@@ -41,7 +38,6 @@ const LandingNav = () => {
             height={1000}
             width={1000}
             className="h-10 w-10"
-            onClick={() => dispatch(toggleEdit())}
           />
           <span className="ml-3 text-xl">{t.logo_name}</span>
         </a>

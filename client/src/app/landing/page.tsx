@@ -13,9 +13,7 @@ import ne from "../locales/ne";
 import { store, useAppDispatch, useAppSelector } from "../../redux/store";
 
 const Landing = () => {
-  const router = useRouter();
-  const { locale } = router;
-  const [t, setT] = useState({});
+  const [t, setT] = useState<any>({});
   const isEnglish = useAppSelector((state) => state.isEnglish);
   useEffect(() => {
     if (!isEnglish) {
@@ -83,7 +81,7 @@ const Landing = () => {
 
         <div className="mx-auto mt-12 max-w-[var(--screen-max)]">
           <ul className="grid place-items-center gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {features.map((item, idx) => (
+            {features.map((item: any, idx) => (
               <li key={idx} className="w-full bg-gray-100 p-4">
                 <div className="mx-auto h-24 w-24 rounded-full bg-gray-300 p-2">
                   <img

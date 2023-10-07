@@ -8,9 +8,7 @@ import ne from "../locales/budget/ne";
 
 const NagarpalikaWorks = () => {
   const router = useRouter();
-  const { locale } = router;
-  const [t, setT] = useState({});
-  // const t = locale === "en" ? en : ne;
+  const [t, setT] = useState<any>({});
   const isEnglish = useAppSelector((state) => state.isEnglish);
   useEffect(() => {
     if (!isEnglish) {

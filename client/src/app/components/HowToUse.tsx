@@ -7,10 +7,7 @@ import en from "../locales/en";
 import ne from "../locales/ne";
 
 const HowToUse = () => {
-  const router = useRouter();
-  const { locale } = router;
-  const [t, setT] = useState({});
-  // const t = locale === "en" ? en : ne;
+  const [t, setT] = useState<any>({});
   const isEnglish = useAppSelector((state) => state.isEnglish);
   useEffect(() => {
     if (!isEnglish) {
@@ -34,7 +31,7 @@ const HowToUse = () => {
               {t.howtouse_1}
             </h3>
             <p className="text-lg leading-snug tracking-wide text-gray-900 text-opacity-100">
-              O{t.howtouse_1_desc}
+              {t.howtouse_1_desc}
             </p>
           </div>
         </div>
