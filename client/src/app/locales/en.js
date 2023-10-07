@@ -1,4 +1,4 @@
-export default {
+const data = {
   alt: "Government Logo",
   logo_name: "GovernIt",
   home: "Home",
@@ -7,8 +7,8 @@ export default {
   about: "About",
   signin: "Sign In",
   t_title: "Live Streaming",
-  t_budget : "Budget Transparency",
-  t_govOrg : "Gov Org Ranking",
+  t_budget: "Budget Transparency",
+  t_govOrg: "Gov Org Ranking",
   howtouse_1: "Sign Up using your Citizenship Number",
   howtouse_1_desc:
     "Once you have opened the GovernIT application, Sign Up and login using citizenship number.",
@@ -27,3 +27,5 @@ export default {
   privacy_policy: "Privacy",
   copyright: "Copyright @ 2023 All Rights Reserved. Nepal Govermnet",
 };
+
+export default data;

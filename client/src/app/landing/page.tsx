@@ -28,17 +28,17 @@ const Landing = () => {
     {
       avatar: "/assets/live-hero.png",
       title: `${t.t_title}`,
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
+      desc: `${t.howtouse_1_desc}`,
     },
     {
       avatar: "/assets/budget.png",
       title: `${t.t_budget}`,
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
+      desc: `${t.howtouse_2_desc}`,
     },
     {
       avatar: "/assets/leaderboard.png",
       title: `${t.t_govOrg}`,
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
+      desc: `${t.howtouse_3_desc}`,
     },
   ];
   return (

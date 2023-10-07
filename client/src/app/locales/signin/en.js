@@ -1,4 +1,4 @@
-export default {
+const data = {
   login: "Log in to your account",
   donthaveaccount: "Don't have an account?",
   signup: "Sign up",
@@ -7,3 +7,5 @@ export default {
   ctzn: "Citizenship Number",
   password: "Password",
 };
+
+export default data;

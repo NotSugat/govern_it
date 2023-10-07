@@ -1,4 +1,4 @@
-export default {
+export default data = {
   alt: "सरकारी लोगो",
   logo_name: "गभर्न इट",
   home: "घर",

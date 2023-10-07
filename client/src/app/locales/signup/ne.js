@@ -1,4 +1,4 @@
-export default {
+const data = {
   register: "दर्ता गर्नुहोस्",
   email: "इ-मेल ठेगाना",
   password: "पासवर्ड",
@@ -9,3 +9,5 @@ export default {
   submit: "पेश गर्नुहोस्",
   go_back: "गृह पृष्ठमा फर्कनुहोस्",
 };
+
+export default data;

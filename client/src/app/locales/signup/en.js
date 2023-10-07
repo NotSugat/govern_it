@@ -1,4 +1,4 @@
-export default {
+const data = {
   register: "Register",
   email: "Email Address",
   password: "Password",
@@ -7,5 +7,7 @@ export default {
   phn_num: "Phone number (123-456-789)",
   nagaritka_num: "Nagarikta Number (Ex. 24231)",
   submit: "Submit",
-  go_back : "Go back to Home"
+  go_back: "Go back to Home",
 };
+
+export default data;

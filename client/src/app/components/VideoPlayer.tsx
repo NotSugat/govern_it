@@ -4,7 +4,7 @@ import Hls from "hls.js";
 
 const VideoPlayer = () => {
   const videoRef = useRef(null);
-  const videoSrc = "http://localhost:8080/hls/test.m3u8";
+  const videoSrc = "http://51.107.9.120/hls/test.m3u9";
 
   useEffect(() => {
     const video: any = videoRef.current;
